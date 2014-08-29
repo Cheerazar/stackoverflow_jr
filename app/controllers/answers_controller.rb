@@ -1,4 +1,4 @@
-class AnswersController < ActionController
+class AnswersController < ApplicationController
 
 
 
