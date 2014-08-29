@@ -12,9 +12,15 @@ Rails.application.routes.draw do
 
   delete 'questions/:id' => 'questions#destroy'
 
+  get '/questions/:id/edit' => 'questions#edit'
+
+  post '/questions/:id' => 'questions#update'
+
   post 'questions/:question_id/answers/create' => 'answers#create'
 
-  put 'questions/:question_id/answers/:id/edit' => 'answers#edit'
+  get 'questions/:question_id/answers/:id/edit' => 'answers#edit'
+
+  put 'questions/:question_id/answers/:id' => 'answers#update'
 
   delete 'questions/:question_id/answers/:id' => 'answers#destroy'
 
