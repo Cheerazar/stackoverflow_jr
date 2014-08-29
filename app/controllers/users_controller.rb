@@ -4,6 +4,19 @@ class UsersController < ActionController
 
   end
 
+  def login
+  end
+
+  def signin
+    @user = User.find_by(:username =>params[:username])
+    if @user != nil
+      session[:user] = @user.id
+      redirect_to user_path(@user)
+    else
+      render :login
+    end
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -44,6 +57,11 @@ class UsersController < ActionController
     user=User.find params[:id]
     session[:user] = nil
     user.destroy
+  end
+
+  def signout
+    session[:user] = nil
+    redirect_to root_path
   end
 
   private
