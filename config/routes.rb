@@ -24,11 +24,11 @@ Rails.application.routes.draw do
 
   delete 'questions/:question_id/comments/:id' => 'comments#destroy'
 
-  get '/users/login' => 'users#login'
+  get '/users/login' => 'users#login', as: :login
 
   post '/users/signin' => 'users#signin'
 
-  get '/users/signout' => 'users#signout'
+  get '/users/signout' => 'users#signout', as: :signout
 
   get 'users/new' => 'users#new', as: :new_user
 
