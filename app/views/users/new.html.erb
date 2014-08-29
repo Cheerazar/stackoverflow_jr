@@ -1,0 +1,20 @@
+<div class="users">
+  <%= form_for @user do |u| %>
+  <%= u.label :first_name %>
+  <%= u.text_field :first_name %><br>
+
+  <%= u.label :last_name %>
+  <%= u.text_field :last_name %><br>
+
+  <%= u.label :username %>
+  <%= u.text_field :username %><br>
+
+  <%= u.label :email %>
+  <%= u.text_field :email %><br>
+
+  <%= u.label :password %>
+  <%= u.text_field :password_hash %><br>
+
+  <%= u.submit :Create!%>
+  <% end %>
+</div>

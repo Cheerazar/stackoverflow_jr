@@ -1,0 +1,12 @@
+<div class="users">
+  <%= form_for @user do |u| %>
+
+  <%= u.label :username %>
+  <%= u.text_field :username %><br>
+
+  <%= u.label :password %>
+  <%= u.text_field :password_hash %><br>
+
+  <%= u.submit :Login!%>
+  <% end %>
+</div>
