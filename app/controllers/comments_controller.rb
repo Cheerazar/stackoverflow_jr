@@ -1,4 +1,4 @@
-class CommentsController < ActionController
+class CommentsController < ApplicationController
 
   def answer
     @question = Question.find(params[:question_id])
