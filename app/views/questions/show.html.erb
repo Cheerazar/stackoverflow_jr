@@ -1,0 +1,50 @@
+
+<% if session[:user] != nil%>
+<% @user = User.find(session[:user]) %>
+
+<h1> Hello <%= link_to @user.username, user_path(@user) %> </h1>
+<span> <%= link_to "sign out", signout_path %></span>
+<span> <%= link_to "create a question", new_question_path %></span>
+<% end %>
+
+
+<span><%= link_to "Home Page", root_path %></span>
+
+
+<h1><%= @question.title %></h1>
+ <% if session[:user] == @question.user.id %>
+ <%= link_to "edit your question", edit_question_path(@question) %>
+
+ <% end%>
+
+<p><%= @question.body %></p>
+
+<ul>
+  <% @question.answers.each do |answer| %>
+ <li>
+  <ul>
+  <div><%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </div>
+      <% answer.comments.each do |comment|%>
+      <li>
+        <div><%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
+      </li>
+      <% end%>
+  </ul>
+ </li>
+
+
+  <% if session[:user] != nil %>
+
+    <% if session[:user] == answer.user.id %>
+    <%= link_to "edit your answer", edit_answer_path(answer) %>
+    <% end%>
+
+
+  <%= render template: "answers/new" %>
+
+  <% end %>
+
+<% end %>
+</ul>
+
+

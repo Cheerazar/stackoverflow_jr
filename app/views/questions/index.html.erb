@@ -6,7 +6,7 @@
 <ul>
   <% @questions.each do |question| %>
  <li>
-  <%= question.title %> - <%= question.user.username %>
+  <div><%= question.title %> - <%= question.user.username %></div>
  </li>
 
  <% end %>
