@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'questions#index'
 
-  get 'questions/index' => 'questions#index'
+  get 'questions/index' => 'questions#index', as: :all_questions
 
   get 'questions/new' => 'questions#new', as: :new_question
 
