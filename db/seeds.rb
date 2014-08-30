@@ -28,3 +28,10 @@ question_ids.times do
                     user_id: rand(1..user_ids)
     )
 end
+
+question_comment_ids.times do
+  QuestionComment.create( body: Faker::Lorem.paragraph,
+                          user_id: rand(1..user_ids),
+                          question_id: rand(1..question_ids)
+    )
+end
