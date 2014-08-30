@@ -28,6 +28,9 @@
       <li>
         <div><%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
       </li>
+        <% if session[:user] != nil %>
+             <%= render template: "comments/new" %>
+        <% end %>
       <% end%>
   </ul>
  </li>
@@ -41,6 +44,7 @@
 
 
   <%= render template: "answers/new" %>
+
 
   <% end %>
 

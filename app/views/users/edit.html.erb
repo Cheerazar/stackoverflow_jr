@@ -1,0 +1,13 @@
+<h1>Edit your password</h1>
+<ul>
+<%= form_for @user do |f| %>
+  <li>
+    <%= f.label :password_hash %>
+    <%= f.text_field :password_hash %>
+  </li>
+  <li>
+    <%= f.submit %>
+  </li>
+
+<% end%>
+</ul>
