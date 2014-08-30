@@ -7,7 +7,8 @@ RSpec.describe User, :type => :model do
 
   it 'should not store an unecrypted password' do
     password = 'password'
-    user = create(:user, password_hash: password)
-    expect(user.password_hash).to_not eq(password)
+    user = build(:user)
+    user.password = password
+    expect(user.password_hash).should_not eq('password')
   end
 end
