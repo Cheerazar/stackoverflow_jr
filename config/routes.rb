@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   delete 'questions/:id' => 'questions#destroy'
 
-  get '/questions/:id/edit' => 'questions#edit', as: :edit_question
+  get 'questions/:id/edit' => 'questions#edit', as: :edit_question
 
-  patch '/questions/:id' => 'questions#update'
+  patch 'questions/:id' => 'questions#update'
 
   post 'questions/:question_id/answers/create' => 'answers#create'
 
@@ -30,11 +30,11 @@ Rails.application.routes.draw do
 
   delete 'questions/:question_id/comments/:id' => 'comments#destroy'
 
-  get '/users/login' => 'users#login', as: :login
+  get 'users/login' => 'users#login', as: :login
 
-  post '/users/signin' => 'users#signin'
+  post 'users/signin' => 'users#signin'
 
-  get '/users/signout' => 'users#signout', as: :signout
+  get 'users/signout' => 'users#signout', as: :signout
 
   get 'users/new' => 'users#new', as: :new_user
 
