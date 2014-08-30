@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def signin
     @user = User.find_by(:username =>params[:username])
-    if @user != nil
+    if @user.password == params[:password]
       session[:user] = @user.id
       redirect_to user_path(@user)
     else
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.password = params[:password]
     if @user.save
       session[:user] = @user.id
       redirect_to user_path(@user)
@@ -60,6 +61,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :password_hash, :email)
+    params.require(:user).permit(:first_name, :last_name, :username, :email)
   end
 end
