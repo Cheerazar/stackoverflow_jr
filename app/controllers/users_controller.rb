@@ -23,13 +23,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(:username => params[:username],
-                     :password_hash => params[:password_hash],
-                     :email => params[:email],
-                     :first_name => params[:first_name],
-                     :last_name => params[:last_name])
+    @user = User.new(user_params)
     if @user.save
-      session[:user] = user.id
+      session[:user] = @user.id
       redirect_to user_path(@user)
     else
       render :new
