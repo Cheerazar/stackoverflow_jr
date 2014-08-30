@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def answer
     @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:answer_id])
-    @comment = Comment.new(:body => params[:body])
+    @comment = Comment.new(comment_params)
     @user = User.find(session[:user])
     @answer.comments << @comment
     @user.comments << @comment
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
   def question
     @question = Question.find(params[:question_id])
-    @comment = Comment.new(:body => params[:body])
+    @comment = Comment.new(comment_params)
     @user = User.find(session[:user])
     @question.comments << @comment
     @user.comments << @comment

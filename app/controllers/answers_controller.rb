@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
 
 
   def create
-    @answer = Answer.new(:body => params[:body])
+    @answer = Answer.new(answer_params)
     @user = User.find(session[:user])
     @question = Question.find(params[:question_id])
     @question.answers << @answer
