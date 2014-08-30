@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>StackoverflowJr</title>
+  <title>CAPSOVERFLOW</title>
+    <link href='https://www.google.com/fonts#UsePlace:use/Collection:Ropa+Sans' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id ="top-bar"></div>
+  <div id ="logo">
+    <img id="logoimage"src="http://imgur.com/cljNx.png"/>
+    <h1 id="logotext">CAPSoverflow</h1>
+  </div>
+
+  <% if session[:user] != nil %>
+<% user = User.find(session[:user]) %>
+<ul id="logged-in-nav">
+  <div id="user">
+    <%= user.username %> is logged in
+  </div>
+  <li><button> <%= button_to "SIGN OUT", signout_path, :method => :get%></button></li>
+  <li><button> <%= button_to "ASK A QUESTION", new_question_path %></button></li>
+  <li><button> <%= button_to "VIEW QUESTIONS", questions_path, :method => :get%></button></li>
+</ul>
+<% else %>
+  <ul id="logged-out-nav">
+    <li><button> <%= button_to "SIGN UP", new_user_path, :method => :get%></button></li>
+    <li><button> <%= button_to "LOGIN", login_path, :method => :get%></button></li>
+    <li><button> <%= button_to "VIEW QUESTIONS", questions_path, :method => :get%></button></li>
+  </ul>
+<% end %>
 
 <%= yield %>
 

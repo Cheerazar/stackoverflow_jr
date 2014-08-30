@@ -1,32 +1,13 @@
-<h1>Stackoverflow</h1>
 
-<br>
-
-<h2>Here are current questions</h2>
-<ul>
-  <% @questions.each do |question| %>
- <li>
-  <div><%= question.title %> - <%= question.user.username %></div>
- </li>
-
- <% end %>
-
-</ul>
-
-<% if session[:user] != nil %>
-
-<% user = User.find(session[:user]) %>
-<div> <%= user.username %> is logged in </div>
-
-<span> <%= link_to "sign out", signout_path %></span>
-
-<span> <%= link_to "create a question", new_question_path %></span>
+<div id="questions-list">
+  <h2>Top Questions</h2>
+  <ul>
+    <% @questions.each do |question| %>
+      <li>
+      <div><%= question.title %> - <%= question.user.username %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 
-<% else %>
-
-<span> <%= link_to "sign up", new_user_path %></span>
-
-<span> <%= link_to "login", login_path %></span>
-
-<% end %>
