@@ -1,13 +1,13 @@
 <h1>Edit your question</h1>
 <ul>
 <%= form_for @question do |f| %>
-  <li>
-    <%= f.label :body %>
+  <div>
+    <%= f.label "Question Text" %>
     <%= f.text_field :body %>
-  </li>
-  <li>
+  </div>
+  <div>
     <%= f.submit %>
-  </li>
+  </div>
 
 <% end%>
 </ul>

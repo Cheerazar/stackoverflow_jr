@@ -2,19 +2,19 @@ Rails.application.routes.draw do
 
   root 'questions#index'
 
-  get 'questions/index' => 'questions#index', as: :questions
+  get 'questions/index' => 'questions#index'
 
   get 'questions/new' => 'questions#new', as: :new_question
 
-  post 'questions/create' => 'questions#create'
+  post 'questions/create' => 'questions#create', as: :questions
 
   get 'questions/:id' => 'questions#show', as: :question
 
   delete 'questions/:id' => 'questions#destroy'
 
-  get '/questions/:id/edit' => 'questions#edit', as: :edit_question
+  get 'questions/:id/edit' => 'questions#edit', as: :edit_question
 
-  post '/questions/:id' => 'questions#update'
+  patch 'questions/:id' => 'questions#update'
 
   post 'questions/:question_id/answers/create' => 'answers#create'
 
@@ -30,11 +30,11 @@ Rails.application.routes.draw do
 
   delete 'questions/:question_id/comments/:id' => 'comments#destroy'
 
-  get '/users/login' => 'users#login', as: :login
+  get 'users/login' => 'users#login', as: :login
 
-  post '/users/signin' => 'users#signin'
+  post 'users/signin' => 'users#signin'
 
-  get '/users/signout' => 'users#signout', as: :signout
+  get 'users/signout' => 'users#signout', as: :signout
 
   get 'users/new' => 'users#new', as: :new_user
 
@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   put 'users/:id' => 'users#update'
 
   get 'users/:id' => 'users#show', as: :user
+
+  get 'users' => 'users#index', as: :all_users
 
   delete 'users/:id' => 'users#destroy'
 

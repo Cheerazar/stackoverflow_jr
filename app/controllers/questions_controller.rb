@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @user = User.find(session[:user])
-    @user.question << @question
+    @user.questions << @question
     if @question.save
       redirect_to question_path(@question)  #user/:id/question/:id
       ## if every question is unique, then the path can be questions/:id, this would be a show controller method
@@ -29,6 +29,20 @@ class QuestionsController < ApplicationController
     question.destroy
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    @question.body = params[:body]
+    @user = @question.user_id
+     if @question.update(question_params)
+      redirect_to user_path(@user)
+     else
+       redirect_to :edit_question
+     end
+  end
 
   private
 
