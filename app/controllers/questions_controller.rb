@@ -29,6 +29,20 @@ class QuestionsController < ApplicationController
     question.destroy
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    @question.body = params[:body]
+    @user = @question.user_id
+     if @question.update(question_params)
+      redirect_to user_path(@user)
+     else
+       redirect_to :edit_question
+     end
+  end
 
   private
 

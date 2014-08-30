@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/questions/:id/edit' => 'questions#edit', as: :edit_question
 
-  post '/questions/:id' => 'questions#update'
+  patch '/questions/:id' => 'questions#update'
 
   post 'questions/:question_id/answers/create' => 'answers#create'
 
