@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   root 'questions#index'
 
-  get 'questions/index' => 'questions#index', as: :questions
+  get 'questions/index' => 'questions#index'
 
   get 'questions/new' => 'questions#new', as: :new_question
 
-  post 'questions/create' => 'questions#create'
+  post 'questions/create' => 'questions#create', as: :questions
 
   get 'questions/:id' => 'questions#show', as: :question
 
