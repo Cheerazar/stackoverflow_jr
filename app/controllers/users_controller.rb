@@ -4,6 +4,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def signin
     @user = User.find_by(:username =>params[:username])
     if @user.password == params[:password]
