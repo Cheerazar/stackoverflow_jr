@@ -1,0 +1,17 @@
+<h1>Welcome <%= @user.username %></h1>
+<div>
+<% @user.questions.each do |q|%>
+
+<h4><%= q.title %></h4>
+  <p><%= q.body %></p>
+
+</div>
+
+<% end %>
+<%= link_to "New Question", new_question_path %>
+<%= link_to "Sign Out", signout_path(@user) %>
+
+
+
+
+
