@@ -1,0 +1,7 @@
+<%=  @user.username %>
+<% @user.questions do |question| %>
+<ul>
+<li>=<%= question.title %></li>
+</ul>
+<% end %>
+<%= link_to 'homepage', root_path %>
