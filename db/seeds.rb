@@ -19,5 +19,12 @@ user_ids.times do
                 email: Faker::Internet.email,
                 username: Faker::Internet.user_name,
                 password_hash: 'tested'
-                )
+    )
+end
+
+question_ids.times do
+  Question.create(  title: Faker::Lorem.sentence,
+                    body: Faker::Lorem.paragraph,
+                    user_id: rand(1..user_ids)
+    )
 end
