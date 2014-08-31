@@ -25,12 +25,20 @@ class QuestionsController < ApplicationController
   end
 
    def destroy
-    question=Question.find params[:id]
-    question.destroy
+    @question=Question.find params[:id]
+    user = User.find(@question.user_id)
+    @question.destroy
+    @user
+    redirect_to user_path(user)
   end
 
   def edit
     @question = Question.find(params[:id])
+    if session[:user] == @question.user_id
+      @question = Question.find(params[:id])
+    else
+      redirect_to question_path(@question)
+    end
   end
 
   def update
