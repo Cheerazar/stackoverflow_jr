@@ -37,12 +37,12 @@
 
 
     <% if session[:user] == answer.user.id %>
-      <%= link_to "edit your answer", edit_answer_path(answer) %>
+      <%= link_to "edit your answer", edit_answer_path(@question, answer) %>
     <% end%>
 <% end %>
 
   <% unless session[:user].nil? %>
-    <%= render template: "answers/new", locals: { answer: Answer.new } %>
+    <%= render template: "answers/new", locals: { answer: Answer.new, question_id: @question.id } %>
   <% end %>
 </ul>
 

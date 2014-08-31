@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
     @user = User.find(session[:user])
     @question = Question.find(params[:question_id])
     @question.answers << @answer
-    @user.answer << @answer
+    @user.answers << @answer
     if @answer.save
       #put them on the question page
       redirect_to question_path(@question)  #user/:id/question/:id

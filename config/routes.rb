@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   patch 'questions/:id' => 'questions#update'
 
-  post 'questions/:question_id/answers/create' => 'answers#create'
+  post 'questions/:question_id/answers/create' => 'answers#create', as: :answer_create
 
   get 'questions/:question_id/answers/:id/edit' => 'answers#edit', as: :edit_answer
 
