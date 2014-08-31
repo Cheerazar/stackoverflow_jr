@@ -14,6 +14,7 @@
 <h1>question title: <%= @question.title %></h1>
  <% if session[:user] == @question.user.id %>
  <%= link_to "edit your question", edit_question_path(@question) %>
+ <%= link_to 'delete your question', question_path(@question), :method => :delete %>
 
  <% end%>
 
