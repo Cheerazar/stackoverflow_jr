@@ -1,5 +1,9 @@
 <div id="user-profile">
   <span><%= link_to "Home Page", root_path %></span>
+  <% if session[:user] == @user.id %>
+   <%= link_to "edit your profile", edit_user_path(@user) %>
+
+ <% end%>
   <h1>Welcome <%= @user.username %></h1>
   <div>
     <% @user.questions.each do |q|%>
