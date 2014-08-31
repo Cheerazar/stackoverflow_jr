@@ -13,7 +13,4 @@ RSpec.describe User, :type => :model do
     expect(hash).should_not eq('password')
   end
 
-  it 'should add a user to the database'
-
-  it 'should add exactly one user to the database'
 end
