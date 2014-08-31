@@ -16,49 +16,69 @@
 body {
   font-family: Helvetica Nueu, Arial;
   font-variant: small-caps;
-  font-weight: normal;
 }
 
 #top-bar{
   width: 100%;
   height: 3em;
   margin: 0 auto;
-  position: relative;
   background-color: black;
 }
+
+#top-nav-logged_in{
+  float:right;
+  margin-top: 2em;
+  margin-right: 8em;
+  list-style: none;
+}
+
+#top-nav-logged_in li{
+  list-style: none;
+  float: left;
+  padding-left: 0.5em;
+}
+
+#top-nav-logged_out{
+  float:right;
+  margin-top: 2em;
+  padding-right: 20em;
+}
+
+#top-nav-logged_out li{
+  list-style: none;
+  float: left;
+  padding-left: 0.5em;
+}
+
 #logotext {
   font-size: 3em;
   float: left;
+  margin-top: 1em;
 }
 
 #logoimage {
   float: left;
   width: 12em;
   height: 12em;
+  margin-top: 1em;
 }
 
 .menu-button{
   background-color: gray;
-  color: white;
   font-family: Helvetica;
   font-size: 1em;
-  text-decoration: none;
   text-transform: uppercase;
   height: 3em;
 }
 
-.list-label{
-  text-align: center;
+.menu-button:hover {
+    background-color: orange;
 }
 
-#logged-out-nav{
-  list-style: none;
-  float: left;
-}
 
-#logged-out-nav li{
-  float: left;
-  padding-left: 0.5em;
+.menu-button a{
+  color: white;
+  text-decoration: none;
 }
 
 .user-login{
@@ -71,6 +91,11 @@ body {
 
 .user-login ul li{
   padding-bottom: 1em;
+}
+
+.user-greeting{
+  float: left;
+  border-bottom: 1px solid lightgray
 }
 
 #login-button{
@@ -95,24 +120,10 @@ body {
   margin-left: 2em;
 }
 
-.user-greeting{
-  float: left;
-  border-bottom: 1px solid lightgray
-}
-
-#logged-in-nav{
-  list-style: none;
-  float: left;
-
-}
-
-#logged-in-nav li{
-  float: left;
-}
-
 #questions-list{
-  display: block;
+/*  display: block;*/
   float: left;
+/*  margin-top: 1em;*/
 }
 
 #users-list{
@@ -195,6 +206,7 @@ body {
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
 
+
 @media only screen and (max-width: 480px) {
   .span_4_of_4 {
     width: 100%;
@@ -209,3 +221,4 @@ body {
     width: 100%;
   }
 }
+
