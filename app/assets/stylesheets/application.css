@@ -75,7 +75,6 @@ body {
     background-color: orange;
 }
 
-
 .menu-button a{
   color: white;
   text-decoration: none;
@@ -101,7 +100,6 @@ body {
 #login-button{
   margin-left: 2em;
 }
-
 
 .user-signup{
   float: left;
