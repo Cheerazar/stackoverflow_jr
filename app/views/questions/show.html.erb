@@ -21,34 +21,29 @@
 
 <ul>
   <% @question.answers.each do |answer| %>
- <li>
-  <ul>
-  <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </div>
-      <% answer.answer_comments.each do |comment|%>
-        <li>
-          <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
-        </li>
-      <% end%>
-      <% if session[:user] != nil %>
-           <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new }%>
-      <% end %>
+    <li>
+      <ul>
+      <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </div>
+        <% answer.answer_comments.each do |comment|%>
+          <li>
+            <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
+          </li>
+        <% end%>
+        <% if session[:user] != nil %>
+             <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new }%>
+        <% end %>
   </ul>
- </li>
+  </li>
 
-
-  <% if session[:user] != nil %>
 
     <% if session[:user] == answer.user.id %>
-    <%= link_to "edit your answer", edit_answer_path(answer) %>
+      <%= link_to "edit your answer", edit_answer_path(answer) %>
     <% end%>
-
-
-  <%= render template: "answers/new", locals: { answer: Answer.new } %>
-
-
-  <% end %>
-
 <% end %>
+
+  <% unless session[:user].nil? %>
+    <%= render template: "answers/new", locals: { answer: Answer.new } %>
+  <% end %>
 </ul>
 
 
