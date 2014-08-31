@@ -1,0 +1,13 @@
+<h1>Edit your question comment</h1>
+<ul>
+<%= form_for @question_comment, url: update_question_comment_path(@question_comment.question_id, @question_comment), method: 'put' do |f| %>
+  <li>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </li>
+  <li>
+    <%= f.submit %>
+  </li>
+
+<% end%>
+</ul>

@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
     @user = User.find(session[:user])
     @question = Question.find(params[:question_id])
     @question.answers << @answer
-    @user.answer << @answer
+    @user.answers << @answer
     if @answer.save
       #put them on the question page
       redirect_to question_path(@question)  #user/:id/question/:id
@@ -19,8 +19,12 @@ class AnswersController < ApplicationController
 
   def edit
     @answer = Answer.find(params[:id])
+  end
+
+  def update
+    @answer = Answer.find(params[:id])
     @question = Question.find(params[:question_id])
-    if @answer.update_attribute :body, params[:body]
+    if @answer.update_attributes(answer_params)
       redirect_to question_path(@question)
     else
       render "questions/show"

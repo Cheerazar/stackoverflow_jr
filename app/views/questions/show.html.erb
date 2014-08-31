@@ -6,6 +6,7 @@
   <h1> Hello <%= link_to @user.username, user_path(@user) %> </h1>
   <% end %>
 </div>
+
 <div class="question-view">
   <h1 class="question-title"><%= @question.title %></h1>
    <% if session[:user] == @question.user.id %>
@@ -13,35 +14,45 @@
    <% end %>
   <p><%= @question.body %></p>
   <ul>
+    <% @question.question_comments.each do |question_comment| %>
+      <li>
+        <div>QUESTION COMMENT: <%= question_comment.body %></div>
+      </li>
+      <% if session[:user] == question_comment.user.id %>
+        <%= link_to "edit your question comment", edit_question_comment_path(@question,   question_comment) %>
+      <% end%>
+    <% end %>
+
+    <% if session[:user] != nil %>
+      <%= render template: "question_comments/new", locals: { question_comment:   QuestionComment.new, question: @question}  %>
+    <% end %>
+ </ul>
+ <ul>
     <% @question.answers.each do |answer| %>
-    <li>
-      <div>
-        <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %>
-      </div>
-      <% answer.comments.each do |comment|%>
-    </li>
-    <li>
-      <div><%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
-    </li>
-    <li>
-      <% if session[:user] != nil %>
-        <%= render template: "comments/new" %>
-    </li>
+  <li>
+    <ul>
+      <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </div>
+      <% answer.answer_comments.each do |comment|%>
+        <li>
+          <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
+        </li>
+        <% if session[:user] == comment.user.id %>
+          <%= link_to "edit your comment", edit_answer_comment_path(@question, answer, comment) %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% if session[:user] != nil %>
-    <% if session[:user] == answer.user.id %>
-    <%= link_to "edit your answer", edit_answer_path(answer) %>
-    <% end %>
-  </div>
+      <% if session[:user] != nil %>
+        <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new, answer: answer }%>
+      <% end %>
+    </ul>
+  </li>
+      <% if session[:user] == answer.user.id %>
+      <%= link_to "edit your answer", edit_answer_path(@question, answer) %>
+    <% end%>
+ <% end %>
 
-
-    <%= render template: "answers/new" %>
-
-
+  <% unless session[:user].nil? %>
+    <%= render template: "answers/new", locals: { answer: Answer.new, question_id: @question.id } %>
   <% end %>
-
-<% end %>
 </ul>
 </div>
 
