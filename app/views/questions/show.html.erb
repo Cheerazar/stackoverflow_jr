@@ -1,73 +1,60 @@
 
 <% if session[:user] != nil%>
-<% @user = User.find(session[:user]) %>
-
-<h1> Hello <%= link_to @user.username, user_path(@user) %> </h1>
-<span> <%= link_to "sign out", signout_path %></span>
-<span> <%= link_to "create a question", new_question_path %></span>
+  <% @user = User.find(session[:user]) %>
+    <div class="user-greeting span_4_of_4">
+      <h1> Hello <%= link_to @user.username, user_path(@user) %> </h1>
+    </div>
 <% end %>
 
+<div class="question-view">
+  <h1 class="question-title"><%= @question.title %></h1>
+   <% if session[:user] == @question.user.id %>
+   <%= link_to "edit your question", edit_question_path(@question) %>
+    <%= link_to 'delete your question', question_path(@question), :method => :delete %>
 
-<span><%= link_to "Home Page", root_path %></span>
+   <% end %>
+  <p><%= @question.body %></p>
+  <ul>
+    <% @question.question_comments.each do |question_comment| %>
+      <li>
+        <div>QUESTION COMMENT: <%= question_comment.body %></div>
+      </li>
+      <% if session[:user] == question_comment.user.id %>
+        <%= link_to "edit your question comment", edit_question_comment_path(@question,   question_comment) %>
+      <% end%>
+    <% end %>
 
-
-<h1>question title: <%= @question.title %></h1>
- <% if session[:user] == @question.user.id %>
- <%= link_to "edit your question", edit_question_path(@question) %>
- <%= link_to 'delete your question', question_path(@question), :method => :delete %>
-
- <% end%>
-
-<p>Question body: <%= @question.body %></p>
-
-<ul>
-  <% @question.question_comments.each do |question_comment| %>
-    <li>
-      <div>QUESTION COMMENT: <%= question_comment.body %></div>
-    </li>
-    <% if session[:user] == question_comment.user.id %>
-      <%= link_to "edit your question comment", edit_question_comment_path(@question, question_comment) %>
-    <% end%>
-  <% end %>
-
-  <% if session[:user] != nil %>
-    <%= render template: "question_comments/new", locals: { question_comment: QuestionComment.new, question: @question}  %>
-  <% end %>
-</ul>
-
-
-
-
-
-<ul>
-  <% @question.answers.each do |answer| %>
-    <li>
-      <ul>
+    <% if session[:user] != nil %>
+      <%= render template: "question_comments/new", locals: { question_comment:   QuestionComment.new, question: @question}  %>
+    <% end %>
+ </ul>
+ <ul>
+    <% @question.answers.each do |answer| %>
+  <li>
+    <ul>
       <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </div>
-        <% answer.answer_comments.each do |comment|%>
-          <li>
-            <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
-          </li>
-          <% if session[:user] == comment.user.id %>
-            <%= link_to "edit your comment", edit_answer_comment_path(@question, answer, comment) %>
-          <% end%>
-        <% end%>
-        <% if session[:user] != nil %>
-             <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new, answer: answer }%>
+      <% answer.answer_comments.each do |comment|%>
+        <li>
+          <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
+        </li>
+        <% if session[:user] == comment.user.id %>
+          <%= link_to "edit your comment", edit_answer_comment_path(@question, answer, comment) %>
         <% end %>
-  </ul>
+      <% end %>
+      <% if session[:user] != nil %>
+        <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new, answer: answer }%>
+      <% end %>
+    </ul>
   </li>
-
-
-    <% if session[:user] == answer.user.id %>
+      <% if session[:user] == answer.user.id %>
       <%= link_to "edit your answer", edit_answer_path(@question, answer) %>
       <%= link_to 'delete your answer', delete_answer_path(@question.id, answer.id), :method => :delete %>
     <% end%>
-<% end %>
+ <% end %>
 
   <% unless session[:user].nil? %>
     <%= render template: "answers/new", locals: { answer: Answer.new, question_id: @question.id } %>
   <% end %>
 </ul>
-
+</div>
 
