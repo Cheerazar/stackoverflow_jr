@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   put 'questions/:question_id/answers/:id' => 'answers#update', as: :update_answer
 
-  delete 'questions/:question_id/answers/:id' => 'answers#destroy'
+  delete 'questions/:question_id/answers/:id' => 'answers#destroy', as: :delete_answer
 
   post 'questions/:question_id/answers/:answer_id/answer_comments/create' => 'answer_comments#create', as: :answer_comment_create
 

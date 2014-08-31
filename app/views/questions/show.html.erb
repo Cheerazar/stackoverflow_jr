@@ -61,6 +61,7 @@
 
     <% if session[:user] == answer.user.id %>
       <%= link_to "edit your answer", edit_answer_path(@question, answer) %>
+      <%= link_to 'delete your answer', delete_answer_path(@question.id, answer.id), :method => :delete %>
     <% end%>
 <% end %>
 
