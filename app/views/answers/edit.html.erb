@@ -3,7 +3,7 @@
 <%= form_for :answer, url: update_answer_path(@answer.question_id, @answer), method: 'put' do |f| %>
   <li>
     <%= f.label :body %>
-    <%= f.text_field :answer, :value => @answer.body %>
+    <%= f.text_field :body, :value => @answer.body %>
   </li>
   <li>
     <%= f.submit %>
