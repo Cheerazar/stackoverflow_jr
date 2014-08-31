@@ -70,6 +70,11 @@ body {
   float: left;
 }
 
+.user-greeting{
+  float: left;
+  border-bottom: 1px solid lightgray
+}
+
 #logged-in-nav{
   list-style: none;
   float: left;
@@ -79,7 +84,6 @@ body {
 #logged-in-nav li{
   float: left;
 }
-
 
 #questions-list{
   display: block;
@@ -104,12 +108,11 @@ body {
 .question-title{
   color: #0077CC;
   font-size: 1.5em;
-
 }
 
-.question-body{
-  padding-bottom: 1em;
-  border-bottom: 1px solid gray;
+.question-view{
+  float:left;
+  margin-top: 2em;
 }
 
 #question-form ul{
@@ -127,6 +130,11 @@ body {
 }
 
 #question-title-input {
+  width: 40em;
+  height: 5em;
+}
+
+#question-edit-input {
   width: 40em;
   height: 5em;
 }
