@@ -13,7 +13,6 @@
     <h1 id="logotext">CAPSoverflow</h1>
   </div>
 
-<span><%= link_to "Home Page", root_path %></span>
 <% if session[:user] != nil %>
     <% user = User.find(session[:user]) %>
   <div id="top-nav-logged_in">

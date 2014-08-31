@@ -1,18 +1,14 @@
-<div id="user-profile">
-  <span><%= link_to "Home Page", root_path %></span>
+<div id="user-profile" class="span_4_of_4">
   <% if session[:user] == @user.id %>
-   <%= link_to "edit your profile", edit_user_path(@user) %>
-
- <% end%>
-  <h1>Welcome <%= @user.username %></h1>
-  <div>
-    <% @user.questions.each do |q|%>
-      <h4 class="question-title"><%= link_to q.title,  question_path(q) %></h4>
+      <h1>Welcome <%= @user.username %></h1>
+      <%= link_to "edit your profile", edit_user_path(@user) %>
+      <% @user.questions.each do |q|%>
+      <h4 class="question-title"><%= link_to q.title, question_path(q) %></h4>
       <p class="question-body"><%= q.body %></p>
     <% end %>
+ <% end%>
+  <div>
   </div>
-
-
 </div>
 
 
