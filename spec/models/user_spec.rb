@@ -9,7 +9,8 @@ RSpec.describe User, :type => :model do
     password = 'password'
     user = build(:user)
     user.password = password
-    expect(user.password_hash).to_not equal('password')
+    hash = user.password_hash
+    expect(hash).should_not eq('password')
   end
 
   it 'should add a user to the database'
