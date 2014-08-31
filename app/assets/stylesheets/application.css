@@ -45,8 +45,6 @@ body {
 }
 
 
-
-
 #logged-out-nav{
   list-style: none;
   float: left;
@@ -105,6 +103,25 @@ body {
 .question-body{
   padding-bottom: 1em;
   border-bottom: 1px solid gray;
+}
+
+#question-form ul{
+  list-style: none;
+}
+
+#question-form li{
+  padding: 1em;
+  font-size: 1.5em;
+}
+
+#question-body-input {
+  width: 40em;
+  height: 10em;
+}
+
+#question-title-input {
+  width: 40em;
+  height: 5em;
 }
 
 /*RESPONSIVE GRID ===================================*/
