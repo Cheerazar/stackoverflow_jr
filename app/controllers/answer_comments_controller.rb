@@ -14,21 +14,14 @@ class AnswerCommentsController < ApplicationController
     end
   end
 
-  # def question
-  #   @question = Question.find(params[:question_id])
-  #   @comment = Comment.new(comment_params)
-  #   @user = User.find(session[:user])
-  #   @question.comments << @comment
-  #   @user.comments << @comment
-  #   if @comment.save
-  #     redirect_to question_path(@question)
-  #   else
-  #     render "questions/show"
-  #   end
-  # end
 
   def edit
     @answer_comment = AnswerComment.find(params[:id])
+    if session[:user] == @answer_comment.user_id
+      @answer_comment = AnswerComment.find(params[:id])
+    else
+      redirect_to question_path(Answer.find(@answer_comment.answer_id).question_id)
+    end
   end
 
   def update
