@@ -15,6 +15,11 @@ class QuestionCommentsController < ApplicationController
 
   def edit
     @question_comment = QuestionComment.find(params[:id])
+    if session[:user] == @question_comment.user_id
+      @question_comment = QuestionComment.find(params[:id])
+    else
+      redirect_to question_path(@question_comment.question_id)
+    end
   end
 
   def update
