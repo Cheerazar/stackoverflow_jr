@@ -28,6 +28,9 @@
           <li>
             <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
           </li>
+          <% if session[:user] == comment.user.id %>
+            <%= link_to "edit your comment", edit_answer_comment_path(@question, answer, comment) %>
+          <% end%>
         <% end%>
         <% if session[:user] != nil %>
              <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new, answer: answer }%>

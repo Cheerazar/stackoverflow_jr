@@ -27,6 +27,20 @@ class AnswerCommentsController < ApplicationController
   #   end
   # end
 
+  def edit
+    @answer_comment = AnswerComment.find(params[:id])
+  end
+
+  def update
+    @answer_comment = AnswerComment.find(params[:id])
+    @question = Question.find(params[:question_id])
+    if @answer_comment.update_attributes(answer_comments_params)
+      redirect_to question_path(@question)
+    else
+      render "questions/show"
+    end
+  end
+
    def destroy
     comment=AnswerComment.find params[:id]
     comment.destroy

@@ -1,6 +1,6 @@
 <h1>Edit your answer comment</h1>
 <ul>
-<%= form_for @answer_comment do |f| %>
+<%= form_for @answer_comment, url: update_answer_comment_path(Answer.find(@answer_comment.answer_id).question_id, @answer_comment.answer_id, @answer_comment), method: 'put' do |f| %>
   <li>
     <%= f.label :body %>
     <%= f.text_field :body %>
