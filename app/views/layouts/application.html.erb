@@ -2,14 +2,12 @@
 <html>
 <head>
   <title>CAPSOVERFLOW</title>
-    <link href='https://www.google.com/fonts#UsePlace:use/Collection:Ropa+Sans' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="span_4_of_4" id ="top-bar"></div>
-
   <div class="span_4_of_4" id ="logo">
     <img id="logoimage" src="http://imgur.com/cljNx.png"/>
     <h1 id="logotext">CAPSoverflow</h1>
@@ -27,11 +25,17 @@
     <li><button class="menu-button"> <%= link_to "VIEW USERS", all_users_path, :method => :get%></button class="menu-button"></li>
   <li><button class="menu-button"> <%= link_to "VIEW QUESTIONS", all_questions_path, :method => :get%></button></li>
 </ul>
+
 <% else %>
   <ul class="span_4_of_4" id="logged-out-nav">
-    <li><button class="menu-button"> <%= link_to "SIGN UP", new_user_path, :method => :get%></button></li>
-    <li><button class="menu-button"> <%= link_to "LOGIN", login_path, :method => :get%></button></li>
-    <li><button class="menu-button"> <%= link_to "VIEW QUESTIONS", all_questions_path, :method => :get%></button class="menu-button"></li>
+    <li><button class="menu-button">
+      <%= link_to "SIGN UP", new_user_path, :method => :get%>
+    </button></li>
+    <li><button class="menu-button">
+      <%= link_to "LOGIN", login_path, :method => :get%>
+    </button></li>
+    <li><button class="menu-button">
+      <%= link_to "VIEW QUESTIONS", all_questions_path, :method => :get%></li>
   </ul>
 <% end %>
 
