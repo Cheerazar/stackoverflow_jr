@@ -19,6 +19,11 @@ class AnswersController < ApplicationController
 
   def edit
     @answer = Answer.find(params[:id])
+    if session[:user] == @answer.user_id
+      @answer = Answer.find(params[:id])
+    else
+      redirect_to question_path(@answer.question_id)
+    end
   end
 
   def update
