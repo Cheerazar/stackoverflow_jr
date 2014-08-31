@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def signin
     @user = User.find_by(:username =>params[:username])
-    if @user.password == params[:password]
+    if @user && @user.password == params[:password]
       session[:user] = @user.id
       redirect_to user_path(@user)
     else
