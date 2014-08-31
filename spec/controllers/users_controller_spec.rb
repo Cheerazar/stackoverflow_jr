@@ -4,6 +4,7 @@ RSpec.describe UsersController, :type => :controller do
   before :each do
     User.destroy_all
   end
+
   context 'create' do
     it 'should redirect for successful creation of user account' do
       post :create, user: FactoryGirl.attributes_for(:user)
@@ -54,6 +55,28 @@ RSpec.describe UsersController, :type => :controller do
   end
 
   context 'login' do
+    it 'should show the login page' do
+      get :login
+      expect(response.status).to eq(200)
+    end
+  end
+
+  context 'new' do
+    it 'should show the login page' do
+      get :new
+      expect(response.status).to eq(200)
+    end
+  end
+
+  context 'edit' do
+    it 'should show the login page' do
+      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      get :edit, id:@user.id
+      expect(response.status).to eq(200)
+    end
+  end
+
+  context 'signin' do
     before :each do
       session.clear
       @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
@@ -71,6 +94,24 @@ RSpec.describe UsersController, :type => :controller do
 
     it 'should not create a session with invalid username' do
       post :signin, {username:'kevin',password:'password'}
+      expect(session[:user]).to be_nil
+    end
+  end
+
+  context 'signout' do
+    before :each do
+      session.clear
+      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      post :signin, {username:@user.username,password:'sharms'}
+    end
+
+    it 'should redirect to home page' do
+      get :signout
+      expect(response.status).to eq(302)
+    end
+
+    it 'should end user session' do
+      get :signout
       expect(session[:user]).to be_nil
     end
   end
