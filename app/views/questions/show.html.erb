@@ -20,6 +20,25 @@
 <p>Question body: <%= @question.body %></p>
 
 <ul>
+  <% @question.question_comments.each do |question_comment| %>
+    <li>
+      <div>QUESTION COMMENT: <%= question_comment.body %></div>
+    </li>
+    <% if session[:user] == question_comment.user.id %>
+      <%= link_to "edit your question comment", edit_question_comment_path(@question, question_comment) %>
+    <% end%>
+  <% end %>
+
+  <% if session[:user] != nil %>
+    <%= render template: "question_comments/new", locals: { question_comment: QuestionComment.new, question: @question}  %>
+  <% end %>
+</ul>
+
+
+
+
+
+<ul>
   <% @question.answers.each do |answer| %>
     <li>
       <ul>

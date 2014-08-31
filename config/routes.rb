@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
   put 'questions/:question_id/answers/:answer_id/answer_comments/:id' => 'answer_comments#update', as: :update_answer_comment
 
-  post 'questions/:question_id/comments/create' => 'comments#question'
+  post 'questions/:question_id/question_comments/create' => 'question_comments#create', as: :question_comment_create
+
+  get 'questions/:question_id/question_comments/:id/edit' => 'question_comments#edit', as: :edit_question_comment
+
+  put 'questions/:question_id/question_comments/:id' => 'question_comments#update', as: :update_question_comment
 
   delete 'questions/:question_id/comments/:id' => 'comments#destroy'
 
