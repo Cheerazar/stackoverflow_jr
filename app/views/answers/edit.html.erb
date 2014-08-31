@@ -1,9 +1,9 @@
 <h1>Edit your answer</h1>
 <ul>
-<%= form_for @answer do |f| %>
+<%= form_for :answer do |f| %>
   <li>
     <%= f.label :body %>
-    <%= f.text_field :body %>
+    <%= f.text_field :answer, :value => @answer.body %>
   </li>
   <li>
     <%= f.submit %>

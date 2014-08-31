@@ -19,6 +19,10 @@ class AnswersController < ApplicationController
 
   def edit
     @answer = Answer.find(params[:id])
+  end
+
+  def update
+    @answer = Answer.find(params[:id])
     @question = Question.find(params[:question_id])
     if @answer.update_attribute :body, params[:body]
       redirect_to question_path(@question)
