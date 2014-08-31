@@ -6,27 +6,22 @@
       <%= u.label :first_name %>
       <%= u.text_field :first_name %><br>
     </li>
-
     <li>
       <%= u.label :last_name %>
       <%= u.text_field :last_name %><br>
     </li>
-
     <li>
       <%= u.label :username %>
       <%= u.text_field :username %><br>
     </li>
-
     <li>
       <%= u.label :email %>
       <%= u.text_field :email %><br>
     </li>
-
     <li>
       <%= u.label :password %>
       <%= u.text_field :password_hash %><br>
     </li>
-
   </ul>
     <%= u.submit :Create!, :class=> 'menu-button', :id => 'create-user-button'%>
     <% end %>

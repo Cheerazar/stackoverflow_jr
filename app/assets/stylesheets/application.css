@@ -65,6 +65,19 @@ body {
   float: left;
 }
 
+.user-login ul{
+  list-style: none;
+}
+
+.user-login ul li{
+  padding-bottom: 1em;
+}
+
+#login-button{
+  margin-left: 2em;
+}
+
+
 .user-signup{
   float: left;
   margin-left: 1em;

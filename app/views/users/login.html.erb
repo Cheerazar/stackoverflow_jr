@@ -1,12 +1,18 @@
+<h1 class="user-greeting span_4_of_4">LOGIN!</h1>
 <div class="user-login">
-  <%= form_tag :action => :signin do  %>
-
-  <%= label_tag :username %>
-  <%= text_field_tag :username %><br>
-
-  <%= label_tag :password %>
-  <%= text_field_tag :password_hash %><br>
-
-  <%= submit_tag :Login!%>
-  <% end %>
+  <ul>
+    <li>
+      <%= form_tag :action => :signin do  %>
+    </li>
+    <li>
+      <%= label_tag :username %>
+      <%= text_field_tag :username %><br>
+    </li>
+    <li>
+      <%= label_tag :password %>
+      <%= text_field_tag :password_hash %><br>
+    </li>
+    <% end %>
+ </ul>
+  <%= submit_tag :Login!, :class=> 'menu-button', :id => 'login-button'%>
 </div>
