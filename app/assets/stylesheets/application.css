@@ -41,7 +41,14 @@ body {
   background-color: gray;
   color: white;
   font-family: Helvetica;
+  font-size: 1em;
   text-decoration: none;
+  text-transform: uppercase;
+  height: 3em;
+}
+
+.list-label{
+  text-align: center;
 }
 
 
@@ -122,6 +129,16 @@ body {
 #question-title-input {
   width: 40em;
   height: 5em;
+}
+
+#questions-list ul{
+  list-style: none;
+}
+
+#questions-list li{
+  font-size: 1.5em;
+  padding: 1em;
+  border-top: 1px solid lightgray;
 }
 
 /*RESPONSIVE GRID ===================================*/
