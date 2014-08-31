@@ -25,13 +25,13 @@
   <ul>
   <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </div>
       <% answer.answer_comments.each do |comment|%>
-      <li>
-        <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
-      </li>
-        <% if session[:user] != nil %>
-             <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new }%>
-        <% end %>
+        <li>
+          <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
+        </li>
       <% end%>
+      <% if session[:user] != nil %>
+           <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new }%>
+      <% end %>
   </ul>
  </li>
 
