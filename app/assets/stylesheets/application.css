@@ -51,7 +51,6 @@ body {
   text-align: center;
 }
 
-
 #logged-out-nav{
   list-style: none;
   float: left;
@@ -68,6 +67,19 @@ body {
 
 .user-signup{
   float: left;
+  margin-left: 1em;
+}
+
+.user-signup ul{
+  list-style: none;
+}
+
+.user-signup ul li{
+  padding-bottom: 1em;
+}
+
+#create-user-button{
+  margin-left: 2em;
 }
 
 .user-greeting{
