@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'questions/:question_id/answers/:id/edit' => 'answers#edit', as: :edit_answer
 
-  put 'questions/:question_id/answers/:id' => 'answers#update'
+  put 'questions/:question_id/answers/:id' => 'answers#update', as: :update_answer
 
   delete 'questions/:question_id/answers/:id' => 'answers#destroy'
 
