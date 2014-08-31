@@ -25,8 +25,11 @@ class QuestionsController < ApplicationController
   end
 
    def destroy
-    question=Question.find params[:id]
-    question.destroy
+    @question=Question.find params[:id]
+    user = User.find(@question.user_id)
+    @question.destroy
+    @user
+    redirect_to user_path(user)
   end
 
   def edit
