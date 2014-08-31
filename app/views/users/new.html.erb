@@ -1,20 +1,28 @@
+<h1 class="user-greeting span_4_of_4">SIGN UP!</h1>
 <div class="user-signup">
-  <%= form_for @user do |u| %>
-  <%= u.label :first_name %>
-  <%= u.text_field :first_name %><br>
-
-  <%= u.label :last_name %>
-  <%= u.text_field :last_name %><br>
-
-  <%= u.label :username %>
-  <%= u.text_field :username %><br>
-
-  <%= u.label :email %>
-  <%= u.text_field :email %><br>
-
-  <%= u.label :password %>
-  <%= u.password_field :password %><br>
-
-  <%= u.submit :Create!%>
-  <% end %>
+  <ul>
+    <%= form_for @user do |u| %>
+    <li>
+      <%= u.label :first_name %>
+      <%= u.text_field :first_name %><br>
+    </li>
+    <li>
+      <%= u.label :last_name %>
+      <%= u.text_field :last_name %><br>
+    </li>
+    <li>
+      <%= u.label :username %>
+      <%= u.text_field :username %><br>
+    </li>
+    <li>
+      <%= u.label :email %>
+      <%= u.text_field :email %><br>
+    </li>
+    <li>
+      <%= u.label :password %>
+      <%= u.password_field :password %><br>
+    </li>
+  </ul>
+    <%= u.submit :Create!, :class=> 'menu-button', :id => 'create-user-button'%>
+    <% end %>
 </div>
