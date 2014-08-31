@@ -1,17 +1,18 @@
-<h1>Create A New question</h1>
+<div id="question-form">
+<h1>CREATE A NEW QUESTION</h1>
 <ul>
 <%= form_for @question do |f| %>
   <li>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :id => 'question-title-input' %>
   </li>
   <li>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+    <%= f.label :body%>
+    <%= f.text_field :body, :id => 'question-body-input' %>
   </li>
   <li>
-    <%= f.submit %>
+    <%= f.submit :class => 'menu-button' %>
   </li>
-
 <% end%>
 </ul>
+</div>

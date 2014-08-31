@@ -1,9 +1,9 @@
 <div id="questions-list">
-  <h2>Top Questions</h2>
+  <h2 class="list-label">TOP QUESTIONS</h2>
   <ul>
     <% @questions.each do |question| %>
       <li>
-      <div><%= question.title %> - <%= question.user.username %></div>
+      <div><%= link_to question.title, question_path(question) %> - <%= question.user.username %></div>
       </li>
     <% end %>
   </ul>

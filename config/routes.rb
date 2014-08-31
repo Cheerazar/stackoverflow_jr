@@ -16,17 +16,25 @@ Rails.application.routes.draw do
 
   patch 'questions/:id' => 'questions#update'
 
-  post 'questions/:question_id/answers/create' => 'answers#create'
+  post 'questions/:question_id/answers/create' => 'answers#create', as: :answer_create
 
   get 'questions/:question_id/answers/:id/edit' => 'answers#edit', as: :edit_answer
 
-  put 'questions/:question_id/answers/:id' => 'answers#update'
+  put 'questions/:question_id/answers/:id' => 'answers#update', as: :update_answer
 
   delete 'questions/:question_id/answers/:id' => 'answers#destroy'
 
-  post 'questions/:question_id/answers/:answer_id/comments/create' => 'comments#answer'
+  post 'questions/:question_id/answers/:answer_id/answer_comments/create' => 'answer_comments#create', as: :answer_comment_create
 
-  post 'questions/:question_id/comments/create' => 'comments#question'
+  get 'questions/:question_id/answers/:answer_id/answer_comments/:id/edit' => 'answer_comments#edit', as: :edit_answer_comment
+
+  put 'questions/:question_id/answers/:answer_id/answer_comments/:id' => 'answer_comments#update', as: :update_answer_comment
+
+  post 'questions/:question_id/question_comments/create' => 'question_comments#create', as: :question_comment_create
+
+  get 'questions/:question_id/question_comments/:id/edit' => 'question_comments#edit', as: :edit_question_comment
+
+  put 'questions/:question_id/question_comments/:id' => 'question_comments#update', as: :update_question_comment
 
   delete 'questions/:question_id/comments/:id' => 'comments#destroy'
 
