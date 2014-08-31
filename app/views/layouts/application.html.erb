@@ -23,6 +23,7 @@
   </div>
   <li><button class="menu-button"> <%= link_to "SIGN OUT", signout_path, :method => :get%></button></li>
   <li><button class="menu-button"> <%= link_to "ASK A QUESTION", new_question_path %></button></li>
+    <li><button class="menu-button"> <%= link_to "VIEW USERS", all_users_path, :method => :get%></button class="menu-button"></li>
   <li><button class="menu-button"> <%= link_to "VIEW QUESTIONS", all_questions_path, :method => :get%></button></li>
 </ul>
 <% else %>
@@ -30,7 +31,6 @@
     <li><button class="menu-button"> <%= link_to "SIGN UP", new_user_path, :method => :get%></button></li>
     <li><button class="menu-button"> <%= link_to "LOGIN", login_path, :method => :get%></button></li>
     <li><button class="menu-button"> <%= link_to "VIEW QUESTIONS", all_questions_path, :method => :get%></button class="menu-button"></li>
-    <li><button class="menu-button"> <%= link_to "VIEW USERS", all_users_path, :method => :get%></button class="menu-button"></li>
   </ul>
 <% end %>
 
