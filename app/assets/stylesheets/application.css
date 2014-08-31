@@ -41,10 +41,15 @@ body {
   background-color: gray;
   color: white;
   font-family: Helvetica;
+  font-size: 1em;
   text-decoration: none;
+  text-transform: uppercase;
+  height: 3em;
 }
 
-
+.list-label{
+  text-align: center;
+}
 
 
 #logged-out-nav{
@@ -79,15 +84,62 @@ body {
 #questions-list{
   display: block;
   float: left;
-  margin-top: 5em;
 }
 
 #users-list{
   display: block;
   float: left;
-  margin-top: 5em;
 }
 
+#user-profile{
+  display: block;
+  float: left;
+}
+
+#question-form{
+  display: block;
+  float: left;
+}
+
+.question-title{
+  color: #0077CC;
+  font-size: 1.5em;
+
+}
+
+.question-body{
+  padding-bottom: 1em;
+  border-bottom: 1px solid gray;
+}
+
+#question-form ul{
+  list-style: none;
+}
+
+#question-form li{
+  padding: 1em;
+  font-size: 1.5em;
+}
+
+#question-body-input {
+  width: 40em;
+  height: 10em;
+}
+
+#question-title-input {
+  width: 40em;
+  height: 5em;
+}
+
+#questions-list ul{
+  list-style: none;
+}
+
+#questions-list li{
+  font-size: 1.5em;
+  padding: 1em;
+  border-top: 1px solid lightgray;
+}
 
 /*RESPONSIVE GRID ===================================*/
 

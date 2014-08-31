@@ -1,15 +1,18 @@
-<h1>Welcome <%= @user.username %></h1>
-<div>
-<% @user.questions.each do |q|%>
-
-<h4><%= q.title %></h4>
-  <p><%= q.body %></p>
-
+<div id="user-profile">
+  <h1>Welcome <%= @user.username %></h1>
+  <div>
+    <% @user.questions.each do |q|%>
+      <h4 class="question-title"><%= q.title %></h4>
+      <p class="question-body"><%= q.body %></p>
+    <% end %>
+  </div>
+  <button class="menu-button">
+    <%= link_to "New Question", new_question_path %>
+  </button>
+  <button class="menu-button">
+    <%= link_to "Sign Out", signout_path(@user) %>
+  </button>
 </div>
-
-<% end %>
-<%= link_to "New Question", new_question_path %>
-<%= link_to "Sign Out", signout_path(@user) %>
 
 
 
