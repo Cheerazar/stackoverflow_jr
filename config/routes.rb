@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   delete 'questions/:question_id/answers/:id' => 'answers#destroy'
 
-  post 'questions/:question_id/answers/:answer_id/comments/create' => 'comments#answer'
+  post 'questions/:question_id/answers/:answer_id/answer_comments/create' => 'answer_comments#create', as: :answer_comment_create
 
   post 'questions/:question_id/comments/create' => 'comments#question'
 

@@ -5,8 +5,8 @@ class AnswerCommentsController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     @answer_comment = AnswerComment.new(answer_comments_params)
     @user = User.find(session[:user])
-    @answer.comments << @answer_comment
-    @user.comments << @answer_comment
+    @answer.answer_comments << @answer_comment
+    @user.answer_comments << @answer_comment
     if @answer_comment.save
       redirect_to question_path(@question)
     else
@@ -35,7 +35,7 @@ class AnswerCommentsController < ApplicationController
   private
 
   def answer_comments_params
-    params.require(:comment).permit(:body)
+    params.require(:answer_comment).permit(:body)
   end
 
 

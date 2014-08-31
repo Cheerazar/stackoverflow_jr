@@ -30,7 +30,7 @@
           </li>
         <% end%>
         <% if session[:user] != nil %>
-             <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new }%>
+             <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new, answer: answer }%>
         <% end %>
   </ul>
   </li>
