@@ -3,7 +3,7 @@
   <ul>
     <% @questions.each do |question| %>
       <li>
-      <div><%= question.title %> - <%= question.user.username %></div>
+      <div><%= link_to question.title, question_path(question) %> - <%= question.user.username %></div>
       </li>
     <% end %>
   </ul>
