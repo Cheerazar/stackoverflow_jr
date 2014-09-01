@@ -69,4 +69,30 @@ RSpec.describe QuestionsController, :type => :controller do
       expect(Question.exists?(question_id)).to be(false)
     end
   end
+
+  context 'edit' do
+    it 'should show the edit page' do
+      session[:user] = @user.id
+      get :edit, id:@question.id
+      expect(response.status).to eq(200)
+    end
+
+    it 'should redirect without a session' do
+      session.clear
+      get :edit, id:@question.id
+      expect(response.status).to eq(302)
+    end
+  end
+
+  context 'update' do
+    it 'should update the question body' do
+      patch :update, question:{body:'Test body text change'},id:@question.id
+      expect(Question.find(@question.id).body).to eq('Test body text change')
+    end
+
+    it 'should not update if new body is empty' do
+      patch :update, question:{body:''},id:@question.id
+      expect(Question.find(@question.id).body).to_not eq('')
+    end
+  end
 end
