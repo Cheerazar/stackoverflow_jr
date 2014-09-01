@@ -32,8 +32,9 @@
     <% @question.answers.each do |answer| %>
   <li>
     <ul>
-      <% @user = User.find(session[:user]) %>
-      <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> = <%=  link_to "upvote", answer_vote_create_path(answer, @user), method: :post%> </div>
+
+      <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> = <%=  link_to "upvote", answer_vote_create_path(answer.user_id,answer.id), method: :post%> </div>
+
       <% answer.answer_comments.each do |comment|%>
         <li>
           <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>

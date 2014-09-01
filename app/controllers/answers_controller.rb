@@ -48,9 +48,9 @@ class AnswersController < ApplicationController
     @user = User.find params[:user_id]
     # @answer_vote = AnswerVote.find params[:id]
 
-    if defined? AnswerVote.find(params[:id])
+    if defined? (AnswerVote.find(params[:id])) then
       @answer_vote = AnswerVote.find params[:id]
-      if defined? @answer_vote.upvote == true
+      if defined? (@answer_vote.upvote == true) then
         return
       end
       @answer_vote.update_attributes(:downvote => false, :upvote => true)
@@ -59,7 +59,7 @@ class AnswersController < ApplicationController
     end
     @user.answer_votes << @answer_vote
     @answer.answer_votes << @answer_vote
-
+    redirect_to question_path(@answer.question_id)
   end
 
   private
