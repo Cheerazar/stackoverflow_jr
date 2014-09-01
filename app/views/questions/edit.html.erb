@@ -1,10 +1,10 @@
-<div class="question-view">
+<div class="question-view span_4_of_4">
   <h1 class="user-greeting span_4_of_4">Edit your question</h1>
     <%= form_for @question do |f| %>
-        <%= f.label "Question Text" %>
+        <h2><%= f.label "QUESTION TEXT" %></h2>
       <div>
         <%= f.text_field :body, :id => 'question-edit-input' %>
       </div>
-        <%= f.submit %>
+        <%= f.submit :class => "menu-button"%>
     <% end%>
 </div>

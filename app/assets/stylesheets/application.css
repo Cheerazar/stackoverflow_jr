@@ -70,6 +70,29 @@ body {
   text-transform: uppercase;
   height: 2em;
   color: white;
+  margin-top: 1em;
+}
+
+.upvote-button{
+  background-color: green;
+  font-family: Helvetica;
+  text-transform: uppercase;
+}
+
+.upvote-button a{
+  color:white;
+  text-decoration: none;
+}
+
+.downvote-button{
+  background-color: red;
+  font-family: Helvetica;
+  text-transform: uppercase;
+}
+
+.downvote-button a{
+  color:white;
+  text-decoration: none;
 }
 
 .menu-button:hover {

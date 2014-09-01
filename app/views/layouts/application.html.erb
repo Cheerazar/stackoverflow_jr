@@ -18,7 +18,7 @@
   <div id="top-nav-logged_in">
     <ul id="logged-in-nav">
       <div id="user">
-        <%= user.username %> is logged in
+        <%=link_to user.username, user_path(user) %> is logged in
       </div>
       <li><button class="menu-button"> <%= link_to "SIGN OUT",   signout_path, :method => :get%></button></li>
       <li><button class="menu-button"> <%= link_to "ASK A QUESTION",  new_question_path %></button></li>

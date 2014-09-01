@@ -8,7 +8,10 @@
 
 <div class="single-question-view span_4_of_4">
   <h2 class="question-title"><%= @question.title %></h2>
-  <h3 class="question-body"><%= @question.body %> = <%=  link_to "upvote", question_upvote_create_path(@user.id,@question.id), method: :post%> = <%=  link_to "downvote", question_downvote_create_path(@user.id,@question.id), method: :post%> total votes: <%= @question.question_votes.where(question_id: @question.id,:upvote => true).length %></h3>
+  <h3 class="question-body"><%= @question.body %>
+    <button class="upvote-button"><%= link_to "upvote", question_upvote_create_path(@user.id,@question.id), method: :post%></button>
+    <button class="downvote-button"><%= link_to "downvote", question_downvote_create_path(@user.id,@question.id), method: :post%></button>
+    total votes: <%= @question.question_votes.where(question_id: @question.id,:upvote => true).length %></h3>
   <div class="edit-delete">
      <% if session[:user] == @question.user.id %>
        <button class="menu-button"><%= link_to 'edit your question', edit_question_path(@question) %></button>
@@ -40,7 +43,14 @@
  <ol>
     <% @question.answers.each do |answer| %>
   <li>
-      <h2 class="answer"><%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %>= <%=  link_to "upvote", answer_upvote_create_path(@user.id,answer.id), method: :post%> = <%=  link_to "downvote", answer_downvote_create_path(@user.id,answer.id), method: :post%> total votes: <%= answer.answer_votes.where(answer_id: answer, upvote: true).length%> </h2>
+      <h2 class="answer"><%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %></h2>
+        <button class="upvote-button">
+          <%= link_to "upvote", answer_upvote_create_path(@user.id,answer.id), method: :post%>
+        </button>
+        <button class="downvote-button">
+          <%= link_to "downvote", answer_downvote_create_path(@user.id,answer.id), method: :post%>
+        </button>
+           total votes: <%= answer.answer_votes.where(answer_id: answer, upvote: true).length%>
   </li>
   <button id="answer-comments-view"class="menu-button">COMMENTS</button>
    <span class="edit-delete">
