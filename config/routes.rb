@@ -58,4 +58,8 @@ Rails.application.routes.draw do
 
   delete 'users/:id' => 'users#destroy'
 
+  post "users/:user_id/answers/:answer_id/answer_votes/upvote" => 'answers#upvote', as: :answer_vote_create
+
+  put "users/:user_id/answers/:answer_id/answer_votes/:id" => 'answer_votes#update', as: :update_answer_vote
+
 end

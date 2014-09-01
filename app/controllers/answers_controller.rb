@@ -43,6 +43,25 @@ class AnswersController < ApplicationController
     redirect_to question_path(question)
   end
 
+  def upvote
+    @answer = Answer.find params[:answer_id]
+    @user = User.find params[:user_id]
+    # @answer_vote = AnswerVote.find params[:id]
+
+    if defined? AnswerVote.find(params[:id])
+      @answer_vote = AnswerVote.find params[:id]
+      if defined? @answer_vote.upvote == true
+        return
+      end
+      @answer_vote.update_attributes(:downvote => false, :upvote => true)
+    else
+      @answer_vote = AnswerVote.create( :upvote => true )
+    end
+    @user.answer_votes << @answer_vote
+    @answer.answer_votes << @answer_vote
+
+  end
+
   private
 
   def answer_params
