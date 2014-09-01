@@ -52,6 +52,36 @@ class QuestionsController < ApplicationController
      end
   end
 
+  def upvote
+    @question = Question.find params[:question_id]
+    @user = User.find params[:user_id]
+    previous_vote = @user.question_votes.where(:question_id => @question.id).first
+    if previous_vote == nil
+      @question_vote = QuestionVote.create( :upvote => true )
+    else
+      QuestionVote.find(previous_vote.id).destroy
+      @question_vote = QuestionVote.create( :upvote => true, :downvote => false )
+    end
+    @user.question_votes << @question_vote
+    @question.question_votes << @question_vote
+    redirect_to question_path(@question)
+  end
+
+  def downvote
+    @question = Question.find params[:question_id]
+    @user = User.find params[:user_id]
+    previous_vote = @user.question_votes.where(:question_id => @question.id).first
+    if previous_vote == nil
+      @question_vote = QuestionVote.create( :downvote => true )
+    else
+      QuestionVote.find(previous_vote.id).destroy
+      @question_vote = QuestionVote.create( :upvote =>  false, :downvote => true )
+    end
+    @user.question_votes << @question_vote
+    @question.question_votes << @question_vote
+    redirect_to question_path(@question)
+  end
+
   private
 
   def question_params

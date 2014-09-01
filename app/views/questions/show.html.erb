@@ -13,7 +13,7 @@
     <%= link_to 'delete your question', question_path(@question), :method => :delete %>
 
    <% end %>
-  <p><%= @question.body %></p>
+  <p><%= @question.body %> = <%=  link_to "upvote", question_upvote_create_path(@question.user_id,@question.id), method: :post%> = <%=  link_to "downvote", question_downvote_create_path(@question.user_id,@question.id), method: :post%> </p>
   <ul>
     <% @question.question_comments.each do |question_comment| %>
       <li>

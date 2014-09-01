@@ -60,7 +60,11 @@ Rails.application.routes.draw do
 
   post "users/:user_id/answers/:answer_id/answer_votes/upvote" => 'answers#upvote', as: :answer_upvote_create
 
-    post "users/:user_id/answers/:answer_id/answer_votes/downvote" => 'answers#downvote', as: :answer_downvote_create
+  post "users/:user_id/answers/:answer_id/answer_votes/downvote" => 'answers#downvote', as: :answer_downvote_create
+
+  post "users/:user_id/questions/:question_id/question_votes/upvote" => 'questions#upvote', as: :question_upvote_create
+
+  post "users/:user_id/questions/:question_id/question_votes/downvote" => 'questions#downvote', as: :question_downvote_create
 
 
   put "users/:user_id/answers/:answer_id/answer_votes/:id" => 'answer_votes#update', as: :update_answer_vote
