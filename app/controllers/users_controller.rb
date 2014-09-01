@@ -12,9 +12,7 @@ class UsersController < ApplicationController
 
   def signin
     @user = User.find_by_username(params[:username])
-    user_hash = BCrypt::Password.new(@user.password_hash)
-
-    if @user && @user[:password_hash] == user_hash
+    if @user && BCrypt::Password.new(@user.password_hash) == params[:password]
       session[:user] = @user.id
       redirect_to user_path(@user)
     else
@@ -32,7 +30,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    hash = BCrypt::Password.create(params[:password])
+    hash = BCrypt::Password.create(params[:user][:password])
     @user.password_hash = hash
 
     if @user.save
@@ -55,7 +53,8 @@ class UsersController < ApplicationController
 
   def update
     @user=User.find params[:id]
-    if @user.update_attribute :password, params[:password]
+    hash = BCrypt::Password.create(params[:password])
+    if @user.update_attribute :password_hash, hash
       redirect_to user_path(@user)
     else
       render :edit

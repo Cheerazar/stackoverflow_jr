@@ -1,8 +1,10 @@
 require 'rails_helper'
+require 'bcrypt'
 
 RSpec.describe UsersController, :type => :controller do
   before :each do
     User.destroy_all
+    @hash = BCrypt::Password.create('sharms')
   end
 
   context 'index' do
@@ -25,19 +27,19 @@ RSpec.describe UsersController, :type => :controller do
     it 'should not allow multiple users with the same username'
 
     it 'should not add a user without a username' do
-      expect{post :create, user: {first_name:'Steven',last_name:'Harms',email:'steven@devbootcamp.com',password:'sharms'}}.to_not change{User.count}
+      expect{post :create, user: {first_name:'Steven',last_name:'Harms',email:'steven@devbootcamp.com',password_hash:@hash}}.to_not change{User.count}
     end
 
     it 'should not add a user without a first name' do
-      expect{post :create, user: {last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms'}}.to_not change{User.count}
+      expect{post :create, user: {last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password_hash:@hash}}.to_not change{User.count}
     end
 
     it 'should not add a user without a last name' do
-      expect{post :create, user: {first_name:'Steven',username:'steven',email:'steven@devbootcamp.com',password:'sharms'}}.to_not change{User.count}
+      expect{post :create, user: {first_name:'Steven',username:'steven',email:'steven@devbootcamp.com',password_hash:@hash}}.to_not change{User.count}
     end
 
     it 'should not add a user without an email' do
-      expect{post :create, user: {first_name:'Steven',last_name:'Harms',username:'steven',password:'sharms'}}.to_not change{User.count}
+      expect{post :create, user: {first_name:'Steven',last_name:'Harms',username:'steven',password_hash:@hash}}.to_not change{User.count}
     end
 
     it 'should not add a user with a short password'
@@ -47,7 +49,7 @@ RSpec.describe UsersController, :type => :controller do
 
   context 'update' do
     it 'should update password' do
-      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password_hash:@hash)
       expect{put :update, id:@user.id, password: 'blah'}.to change{@user.password_hash}
       expect(response.status).to eq(302)
     end
@@ -55,7 +57,7 @@ RSpec.describe UsersController, :type => :controller do
 
   context 'show' do
     it 'should show user page' do
-      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password_hash:@hash)
       get :show, id:@user.id
       expect(response.status).to eq(200)
     end
@@ -77,7 +79,7 @@ RSpec.describe UsersController, :type => :controller do
 
   context 'edit' do
     it 'should show the edit page' do
-      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password_hash:@hash)
       session[:user] = @user.id
       get :edit, id:@user.id
       expect(response.status).to eq(200)
@@ -87,7 +89,7 @@ RSpec.describe UsersController, :type => :controller do
   context 'signin' do
     before :each do
       session.clear
-      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password_hash:@hash)
     end
 
     it 'should create a user session' do
@@ -109,7 +111,8 @@ RSpec.describe UsersController, :type => :controller do
   context 'signout' do
     before :each do
       session.clear
-      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password_hash:@hash
+        )
       post :signin, {username:@user.username,password:'sharms'}
     end
 
