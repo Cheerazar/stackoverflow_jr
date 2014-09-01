@@ -1,7 +1,5 @@
 class AnswersController < ApplicationController
 
-
-
   def create
     @answer = Answer.new(answer_params)
     @user = User.find(session[:user])
