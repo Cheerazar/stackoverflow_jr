@@ -68,7 +68,8 @@ body {
   font-family: Helvetica;
   font-size: 1em;
   text-transform: uppercase;
-  height: 3em;
+  height: 2em;
+  color: white;
 }
 
 .menu-button:hover {
@@ -182,6 +183,76 @@ body {
   padding: 1em;
   border-top: 1px solid lightgray;
 }
+
+/*INDIVIDUAL QUESTION VIEW ===================================*/
+.single-question-view{
+  float:left;
+  margin-top: 2em;
+  border-bottom: 1px solid lightgray;
+}
+
+.edit-delete{
+  margin-top:2em;
+  margin-bottom:1em;
+}
+
+.comments{
+  margin-top:1em;
+  list-style: none;
+  float:left;
+}
+
+.answers{
+  margin-top:1em;
+  list-style: none;
+  float:right;
+}
+
+.answer{
+  margin-top:1em;
+}
+
+#question-comment li{
+  list-style: none;
+  margin-bottom: 1em;
+}
+
+.comment {
+  color:#0077CC;
+}
+
+.comment-input {
+  width: 30em;
+  height: 5em;
+}
+
+.answer {
+  color:#0077CC;
+}
+
+#answer-comments-view{
+  margin-top: 1em;
+}
+
+.answer-comments{
+  display:none;
+}
+
+.answer-comments li{
+  list-style: none;
+}
+
+.answer-comment{
+  margin:1em;
+}
+
+#answer-comment_submit{
+  margin-top: 1em;
+}
+
+
+
+
 
 /*RESPONSIVE GRID ===================================*/
 

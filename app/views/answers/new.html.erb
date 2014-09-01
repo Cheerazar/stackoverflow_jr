@@ -1,13 +1,14 @@
-<h1>Create A New Answer</h1>
-<ul>
-<%= form_for :answer, url: answer_create_path(question_id) do |f| %>
-  <li>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-  </li>
-  <li>
-    <%= f.submit %>
-  </li>
-
-<% end%>
-</ul>
+<h3>LEAVE AN ANSWER</h3>
+<div id="question-comment">
+  <ul>
+    <%= form_for :answer, url: answer_create_path(question_id) do |f| %>
+      <li>
+        <%= f.label :answer %>
+        <%= f.text_field :body,:class => 'comment-input' %>
+      </li>
+      <li>
+        <%= f.submit :class =>"menu-button" %>
+      </li>
+    <% end%>
+  </ul>
+</div>

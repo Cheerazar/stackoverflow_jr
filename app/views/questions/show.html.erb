@@ -6,55 +6,72 @@
     </div>
 <% end %>
 
-<div class="question-view">
-  <h1 class="question-title"><%= @question.title %></h1>
-   <% if session[:user] == @question.user.id %>
-   <%= link_to "edit your question", edit_question_path(@question) %>
-    <%= link_to 'delete your question', question_path(@question), :method => :delete %>
+<div class="single-question-view span_4_of_4">
+  <h2 class="question-title"><%= @question.title %></h2>
+  <h3 class="question-body"><%= @question.body %></h3>
+  <div class="edit-delete">
+     <% if session[:user] == @question.user.id %>
+       <button class="menu-button"><%= link_to 'edit your question', edit_question_path(@question) %></button>
+       <button class="menu-button"><%= link_to 'delete your question', question_path(@question), :method => :delete %></button>
+     <% end %>
+  </div>
+</div>
 
-   <% end %>
-  <p><%= @question.body %></p>
-  <ul>
-    <% @question.question_comments.each do |question_comment| %>
-      <li>
-        <div>QUESTION COMMENT: <%= question_comment.body %></div>
-      </li>
-      <% if session[:user] == question_comment.user.id %>
-        <%= link_to "edit your question comment", edit_question_comment_path(@question,   question_comment) %>
-      <% end%>
-    <% end %>
 
-    <% if session[:user] != nil %>
-      <%= render template: "question_comments/new", locals: { question_comment:   QuestionComment.new, question: @question}  %>
-    <% end %>
- </ul>
- <ul>
-    <% @question.answers.each do |answer| %>
-  <li>
-    <ul>
-      <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </div>
-      <% answer.answer_comments.each do |comment|%>
-        <li>
-          <div>ANSWER COMMENT: <%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></div>
-        </li>
-        <% if session[:user] == comment.user.id %>
-          <%= link_to "edit your comment", edit_answer_comment_path(@question, answer, comment) %>
-        <% end %>
+  <div class="comments span_2_of_4">
+  <h3>COMMENTS ON THIS QUESTION:</h3>
+    <ol>
+      <% @question.question_comments.each do |question_comment| %>
+        <li><h2 class="comment"><%= question_comment.body %></h2></li>
+        <% if session[:user] == question_comment.user.id %>
+          <button class="menu-button">
+            <%= link_to "edit your comment", edit_question_comment_path(@question, question_comment) %>
+          </button>
+        <% end%>
       <% end %>
       <% if session[:user] != nil %>
-        <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new, answer: answer }%>
+        <%= render template: "question_comments/new", locals: { question_comment:   QuestionComment.new, question: @question}  %>
       <% end %>
+   </ol>
+  </div>
+
+ <div class="answers span_2_of_4">
+ <h3>ANSWERS TO THIS QUESTION:</h3>
+ <ol>
+    <% @question.answers.each do |answer| %>
+  <li>
+      <h2 class="answer"><%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> </h2>
+  </li>
+  <button id="answer-comments-view"class="menu-button">COMMENTS</button>
+   <span class="edit-delete">
+      <% if session[:user] == answer.user.id %>
+        <button class="menu-button"><%= link_to 'edit', edit_answer_path(@question, answer) %></button>
+        <button class="menu-button"><%= link_to 'delete', delete_answer_path(@question.id, answer.id), :method => :delete %></button>
+      <% end%>
+    </span>
+  <div class="answer-comments">
+    <p><% answer.answer_comments.each do |comment|%></p>
+    <ul>
+      <li>
+        <h2 class="comment"><%= comment.body %> - <%= link_to comment.user.username, user_path(comment.user) %></h2>
+          <% if session[:user] == comment.user.id %>
+            <button class="menu-button">
+              <%= link_to "edit your comment", edit_answer_comment_path(@question, answer, comment) %>
+            </button>
+          <% end %>
+          <% end %>
+          <% if session[:user] != nil %>
+            <%= render template: "answer_comments/new", locals: { answer_comment: AnswerComment.new, answer: answer }%>
+          <% end %>
+        </div>
+      </li>
     </ul>
   </li>
-      <% if session[:user] == answer.user.id %>
-      <%= link_to "edit your answer", edit_answer_path(@question, answer) %>
-      <%= link_to 'delete your answer', delete_answer_path(@question.id, answer.id), :method => :delete %>
-    <% end%>
  <% end %>
 
   <% unless session[:user].nil? %>
     <%= render template: "answers/new", locals: { answer: Answer.new, question_id: @question.id } %>
   <% end %>
-</ul>
-</div>
+</ol>
+
 

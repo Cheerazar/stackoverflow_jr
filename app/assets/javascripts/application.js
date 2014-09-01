@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).on("page:change", function() {
+  var revealAnswerComments = function (){
+      $('.answer-comments').css( 'display', 'block');
+    }
+  $("#answer-comments-view").click(revealAnswerComments)
+
+});
