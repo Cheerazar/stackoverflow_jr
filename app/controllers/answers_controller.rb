@@ -46,16 +46,27 @@ class AnswersController < ApplicationController
   def upvote
     @answer = Answer.find params[:answer_id]
     @user = User.find params[:user_id]
-    # @answer_vote = AnswerVote.find params[:id]
-
-    if defined? (AnswerVote.find(params[:id])) then
-      @answer_vote = AnswerVote.find params[:id]
-      if defined? (@answer_vote.upvote == true) then
-        return
-      end
-      @answer_vote.update_attributes(:downvote => false, :upvote => true)
-    else
+    previous_vote = @user.answer_votes.where(:answer_id => @answer.id).first
+    if previous_vote == nil
       @answer_vote = AnswerVote.create( :upvote => true )
+    else
+      AnswerVote.find(previous_vote.id).destroy
+      @answer_vote = AnswerVote.create( :upvote => true, :downvote => false )
+    end
+    @user.answer_votes << @answer_vote
+    @answer.answer_votes << @answer_vote
+    redirect_to question_path(@answer.question_id)
+  end
+
+  def downvote
+    @answer = Answer.find params[:answer_id]
+    @user = User.find params[:user_id]
+    previous_vote = @user.answer_votes.where(:answer_id => @answer.id).first
+    if previous_vote == nil
+      @answer_vote = AnswerVote.create( :downvote => true )
+    else
+      AnswerVote.find(previous_vote.id).destroy
+      @answer_vote = AnswerVote.create( :upvote =>  false, :downvote => true )
     end
     @user.answer_votes << @answer_vote
     @answer.answer_votes << @answer_vote
@@ -67,5 +78,7 @@ class AnswersController < ApplicationController
   def answer_params
     params.require(:answer).permit(:body)
   end
+
+
 
 end

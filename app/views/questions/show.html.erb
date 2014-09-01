@@ -33,7 +33,7 @@
   <li>
     <ul>
 
-      <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> = <%=  link_to "upvote", answer_vote_create_path(answer.user_id,answer.id), method: :post%> </div>
+      <div>ANSWER: <%= answer.body %> - <%= link_to answer.user.username, user_path(answer.user) %> = <%=  link_to "upvote", answer_upvote_create_path(answer.user_id,answer.id), method: :post%> = <%=  link_to "downvote", answer_downvote_create_path(answer.user_id,answer.id), method: :post%>  </div>
 
       <% answer.answer_comments.each do |comment|%>
         <li>
