@@ -55,7 +55,7 @@ class QuestionsController < ApplicationController
   def upvote
     @question = Question.find params[:question_id]
     @user = User.find params[:user_id]
-    previous_vote = @user.question_votes.where(:question_id => @question.id).first
+    previous_vote = @user.question_votes.where(:question_id => @question.id, user_id: @user.id).first
     if previous_vote == nil
       @question_vote = QuestionVote.create( :upvote => true )
     else
@@ -70,7 +70,7 @@ class QuestionsController < ApplicationController
   def downvote
     @question = Question.find params[:question_id]
     @user = User.find params[:user_id]
-    previous_vote = @user.question_votes.where(:question_id => @question.id).first
+    previous_vote = @user.question_votes.where(:question_id => @question.id, user_id: @user.id).first
     if previous_vote == nil
       @question_vote = QuestionVote.create( :downvote => true )
     else
