@@ -4,7 +4,8 @@ RSpec.describe AnswersController, :type => :controller do
   before :each do
     Answer.destroy_all
     session.clear
-    @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+    hash = BCrypt::Password.create('sharms')
+    @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password_hash:hash)
     @question = Question.create(title:'Test Title',body:'Test body text here',user_id:@user.id)
     @answer = Answer.create(body:'Test answer body text',user_id:@user.id,question_id:@question.id)
     session[:user] = @user.id
