@@ -1,13 +1,14 @@
-<h6>Create A New question comment</h6>
-<ul>
-<%= form_for :question_comment, url: question_comment_create_path(question.id) do |f| %>
-  <li>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-  </li>
-  <li>
-    <%= f.submit %>
-  </li>
-
-<% end%>
-</ul>
+<h3>LEAVE A COMMENT</h3>
+<div id="question-comment">
+  <ul>
+    <%= form_for :question_comment, url: question_comment_create_path(question.id) do |f| %>
+      <li>
+        <%= f.label :comment %>
+        <%= f.text_field :body, :class => 'comment-input'%>
+      </li>
+      <li>
+        <%= f.submit :class =>"menu-button" %>
+      </li>
+    <% end%>
+  </ul>
+</div>

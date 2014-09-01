@@ -1,13 +1,12 @@
-<h6>Create A New comment</h6>
+<h4>COMMENT ON THIS ANSWER</h4>
 <ul>
 <%= form_for :answer_comment, url: answer_comment_create_path(answer.question.id, answer.id) do |f| %>
   <li>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+    <%= f.label :comment %>
+    <%= f.text_field :body, :class => 'comment-input' %>
   </li>
   <li>
-    <%= f.submit %>
+    <%= f.submit :class => "menu-button", :id => "answer-comment_submit" %>
   </li>
-
 <% end%>
 </ul>

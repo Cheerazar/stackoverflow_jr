@@ -14,17 +14,21 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @user = User.find(session[:user])
-    @user.questions << @question
-    if @question.save
-      redirect_to question_path(@question)  #user/:id/question/:id
-      ## if every question is unique, then the path can be questions/:id, this would be a show controller method
+    if session[:user].nil?
+      redirect_to root_path
     else
-      render :new
+      @user = User.find(session[:user])
+      @user.questions << @question
+      if @question.save
+        redirect_to question_path(@question)  #user/:id/question/:id
+        ## if every question is unique, then the path can be questions/:id, this would be a show controller method
+      else
+        render :new
+      end
     end
   end
 
-   def destroy
+  def destroy
     @question=Question.find params[:id]
     user = User.find(@question.user_id)
     @question.destroy
@@ -45,11 +49,11 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.body = params[:body]
     @user = @question.user_id
-     if @question.update(question_params)
+    if @question.update(question_params)
       redirect_to user_path(@user)
-     else
-       redirect_to :edit_question
-     end
+    else
+      redirect_to :edit_question
+    end
   end
 
   private
