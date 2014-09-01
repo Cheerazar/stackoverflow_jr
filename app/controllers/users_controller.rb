@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class UsersController < ApplicationController
 
   def login
@@ -9,8 +11,10 @@ class UsersController < ApplicationController
   end
 
   def signin
-    @user = User.find_by(:username =>params[:username])
-    if @user && @user.password == params[:password]
+    @user = User.find_by_username(params[:username])
+    user_hash = BCrypt::Password.new(@user.password_hash)
+
+    if @user && @user[:password_hash] == user_hash
       session[:user] = @user.id
       redirect_to user_path(@user)
     else
@@ -28,7 +32,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.password = params[:password]
+    hash = BCrypt::Password.create(params[:password])
+    @user.password_hash = hash
+
     if @user.save
       session[:user] = @user.id
       redirect_to user_path(@user)
@@ -70,6 +76,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password_hash)
   end
+
 end
