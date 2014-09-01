@@ -9,9 +9,11 @@
 <div class="single-question-view span_4_of_4">
   <h2 class="question-title"><%= @question.title %></h2>
   <h3 class="question-body"><%= @question.body %>
-    <button class="upvote-button"><%= link_to "upvote", question_upvote_create_path(@user.id,@question.id), method: :post%></button>
-    <button class="downvote-button"><%= link_to "downvote", question_downvote_create_path(@user.id,@question.id), method: :post%></button>
-    total votes: <%= @question.question_votes.where(question_id: @question.id,:upvote => true).length %></h3>
+    <div>
+      <button class="upvote-button"><%= link_to "upvote", question_upvote_create_path(@user.id,@question.id), method: :post%></button>
+      <button class="downvote-button"><%= link_to "downvote", question_downvote_create_path(@user.id,@question.id), method: :post%></button>
+      total votes: <%= @question.question_votes.where(question_id: @question.id,:upvote => true).length %></h3>
+   </div>
   <div class="edit-delete">
      <% if session[:user] == @question.user.id %>
        <button class="menu-button"><%= link_to 'edit your question', edit_question_path(@question) %></button>

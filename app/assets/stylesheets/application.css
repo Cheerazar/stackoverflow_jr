@@ -56,6 +56,18 @@ body {
   margin-top: 1em;
 }
 
+a #logotext{
+  color:black;
+}
+
+a:visited{
+  color:#4A6B82;
+}
+
+a:active{
+  color:gray;
+}
+
 #logoimage {
   float: left;
   width: 12em;
@@ -149,8 +161,16 @@ body {
 }
 
 #users-list{
-  display: block;
-  float: left;
+  margin-top:15em;
+}
+
+#users-list ul{
+  list-style: none;
+}
+
+.user-name{
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 #user-profile{
@@ -206,6 +226,21 @@ body {
   padding: 1em;
   border-top: 1px solid lightgray;
 }
+
+.answer-count{
+  width: 6em;
+  text-align: center;
+  margin-bottom: 0.5em;
+  background-color: lightgray;
+}
+
+.vote-count{
+  border: 3px solid lightgray;
+  width: 6em;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
 
 /*INDIVIDUAL QUESTION VIEW ===================================*/
 .single-question-view{
