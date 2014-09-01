@@ -1,14 +1,15 @@
 <div id="user-profile" class="span_4_of_4">
   <% if session[:user] == @user.id %>
       <h1>Welcome <%= @user.username %></h1>
-      <%= link_to "edit your profile", edit_user_path(@user) %>
+      <button class="menu-button"><%= link_to "edit your profile", edit_user_path(@user) %></button>
+  <% end%>
+  <% if session[:user] != @user.id %>
+    <h1 class="user-greeting span_4_of_4">QUESTIONS FROM <%= @user.username %></h1>
+  <% end%>
       <% @user.questions.each do |q|%>
       <h4 class="question-title"><%= link_to q.title, question_path(q) %></h4>
       <p class="question-body"><%= q.body %></p>
     <% end %>
- <% end%>
-  <div>
-  </div>
 </div>
 
 
