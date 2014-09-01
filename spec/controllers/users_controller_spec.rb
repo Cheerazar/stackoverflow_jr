@@ -5,6 +5,13 @@ RSpec.describe UsersController, :type => :controller do
     User.destroy_all
   end
 
+  context 'index' do
+    it 'should show the index page' do
+      get :index
+      expect(response.status).to eq(200)
+    end
+  end
+
   context 'create' do
     it 'should redirect for successful creation of user account' do
       post :create, user: FactoryGirl.attributes_for(:user)
@@ -62,15 +69,16 @@ RSpec.describe UsersController, :type => :controller do
   end
 
   context 'new' do
-    it 'should show the login page' do
+    it 'should show the new user page' do
       get :new
       expect(response.status).to eq(200)
     end
   end
 
   context 'edit' do
-    it 'should show the login page' do
+    it 'should show the edit page' do
       @user = User.create(first_name:'Steven',last_name:'Harms',username:'steven',email:'steven@devbootcamp.com',password:'sharms')
+      session[:user] = @user.id
       get :edit, id:@user.id
       expect(response.status).to eq(200)
     end
