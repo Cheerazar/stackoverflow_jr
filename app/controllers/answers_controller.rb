@@ -1,7 +1,5 @@
 class AnswersController < ApplicationController
 
-
-
   def create
     @answer = Answer.new(answer_params)
     @user = User.find(session[:user])
@@ -41,6 +39,36 @@ class AnswersController < ApplicationController
     question = Question.find(answer.question_id)
     answer.destroy
     redirect_to question_path(question)
+  end
+
+  def upvote
+    @answer = Answer.find params[:answer_id]
+    @user = User.find params[:user_id]
+    previous_vote = @user.answer_votes.where(:answer_id => @answer.id).first
+    if previous_vote == nil
+      @answer_vote = AnswerVote.create( :upvote => true )
+    else
+      AnswerVote.find(previous_vote.id).destroy
+      @answer_vote = AnswerVote.create( :upvote => true, :downvote => false )
+    end
+    @user.answer_votes << @answer_vote
+    @answer.answer_votes << @answer_vote
+    redirect_to question_path(@answer.question_id)
+  end
+
+  def downvote
+    @answer = Answer.find params[:answer_id]
+    @user = User.find params[:user_id]
+    previous_vote = @user.answer_votes.where(:answer_id => @answer.id).first
+    if previous_vote == nil
+      @answer_vote = AnswerVote.create( :downvote => true )
+    else
+      AnswerVote.find(previous_vote.id).destroy
+      @answer_vote = AnswerVote.create( :upvote =>  false, :downvote => true )
+    end
+    @user.answer_votes << @answer_vote
+    @answer.answer_votes << @answer_vote
+    redirect_to question_path(@answer.question_id)
   end
 
   private
